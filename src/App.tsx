@@ -2,21 +2,23 @@ import { useState, useEffect, useCallback } from 'react'
 import { JsonRpcProvider, Contract } from 'ethers'
 import './App.css'
 
-// Arkeo-powered RPC
-const CHAINS: Record<string, { name: string; rpc: string; arkeo: boolean; color: string; chainId: number }> = {
+// Arkeo-powered RPC — Multi-provider routing
+const CHAINS: Record<string, { name: string; rpc: string; arkeo: boolean; color: string; chainId: number; providers?: string[] }> = {
+  ethereum: {
+    name: 'Ethereum',
+    rpc: 'http://arkeo.dc01.0xfury.io:3636/eth-mainnet-fullnode',
+    arkeo: true,
+    color: '#627EEA',
+    chainId: 1,
+    providers: ['0xFury', 'InnovationTheory'],
+  },
   base: {
     name: 'Base',
     rpc: 'https://arkeo-provider.liquify.com/base-mainnet-fullnode',
     arkeo: true,
     color: '#0052FF',
     chainId: 8453,
-  },
-  ethereum: {
-    name: 'Ethereum',
-    rpc: 'https://eth.llamarpc.com',
-    arkeo: false,
-    color: '#627EEA',
-    chainId: 1,
+    providers: ['Liquify', '0xFury', 'InnovationTheory'],
   },
   polygon: {
     name: 'Polygon',
@@ -24,6 +26,7 @@ const CHAINS: Record<string, { name: string; rpc: string; arkeo: boolean; color:
     arkeo: true,
     color: '#8247E5',
     chainId: 137,
+    providers: ['Liquify'],
   },
   bsc: {
     name: 'BNB Chain',
@@ -31,6 +34,15 @@ const CHAINS: Record<string, { name: string; rpc: string; arkeo: boolean; color:
     arkeo: true,
     color: '#F0B90B',
     chainId: 56,
+    providers: ['Liquify'],
+  },
+  arbitrum: {
+    name: 'Arbitrum',
+    rpc: 'http://135.181.18.66:3636/arbitrum-mainnet-fullnode',
+    arkeo: true,
+    color: '#28A0F0',
+    chainId: 42161,
+    providers: ['Everstake'],
   },
 }
 
@@ -233,11 +245,11 @@ function App() {
             <span className="logo-text">Uniswap <span className="accent">via Arkeo</span></span>
           </div>
           <div className="header-right">
-            <a href="https://rbechtold69.github.io/arkeo-data-engine-v2/" target="_blank" rel="noopener" className="marketplace-link">
+            <a href="https://arkeomarketplace.com" target="_blank" rel="noopener" className="marketplace-link">
               ← Marketplace
             </a>
             <div className={`provider-badge ${chain.arkeo ? 'arkeo' : 'fallback'}`}>
-              {chain.arkeo ? '⚡ Arkeo Sentinel (Liquify)' : '↩ Public Fallback RPC'}
+              {chain.arkeo ? `⚡ Arkeo (${chain.providers?.join(', ') || 'Sentinel'})` : '↩ Public Fallback RPC'}
             </div>
           </div>
         </div>
@@ -403,7 +415,7 @@ function App() {
       <footer className="footer">
         <p>
           Uniswap V3 pool data via{' '}
-          <a href="https://rbechtold69.github.io/arkeo-data-engine-v2/" target="_blank" rel="noopener">Arkeo Network</a>
+          <a href="https://arkeomarketplace.com" target="_blank" rel="noopener">Arkeo Network</a>
           {' '}— Decentralized marketplace for blockchain data and interaction
         </p>
         <p className="footer-sub">
