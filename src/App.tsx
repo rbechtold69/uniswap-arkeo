@@ -28,14 +28,7 @@ const CHAINS: Record<string, { name: string; rpc: string; arkeo: boolean; color:
     chainId: 137,
     providers: ['Liquify'],
   },
-  bsc: {
-    name: 'BNB Chain',
-    rpc: 'https://rpc.arkeomarketplace.com/liquify/bsc-mainnet-fullnode',
-    arkeo: true,
-    color: '#F0B90B',
-    chainId: 56,
-    providers: ['Liquify'],
-  },
+  // BSC removed — Uniswap V3 Factory not deployed on BNB Chain
   arbitrum: {
     name: 'Arbitrum',
     rpc: 'https://rpc.arkeomarketplace.com/everstake/arbitrum-mainnet-fullnode',
@@ -70,12 +63,7 @@ const TOKENS: Record<string, { symbol: string; address: string; decimals: number
     { symbol: 'WETH', address: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619', decimals: 18 },
     { symbol: 'USDT', address: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F', decimals: 6 },
   ],
-  bsc: [
-    { symbol: 'WBNB', address: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', decimals: 18 },
-    { symbol: 'USDT', address: '0x55d398326f99059fF775485246999027B3197955', decimals: 18 },
-    { symbol: 'USDC', address: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d', decimals: 18 },
-    { symbol: 'BUSD', address: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56', decimals: 18 },
-  ],
+  // BSC tokens removed — Uniswap V3 not deployed on BNB Chain
 }
 
 // ERC20 ABI (minimal)
