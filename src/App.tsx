@@ -6,7 +6,7 @@ import './App.css'
 const CHAINS: Record<string, { name: string; rpc: string; arkeo: boolean; color: string; chainId: number; providers?: string[] }> = {
   ethereum: {
     name: 'Ethereum',
-    rpc: 'http://arkeo.dc01.0xfury.io:3636/eth-mainnet-fullnode',
+    rpc: 'https://rpc.arkeomarketplace.com/oxfury/eth-mainnet-fullnode',
     arkeo: true,
     color: '#627EEA',
     chainId: 1,
@@ -38,7 +38,7 @@ const CHAINS: Record<string, { name: string; rpc: string; arkeo: boolean; color:
   },
   arbitrum: {
     name: 'Arbitrum',
-    rpc: 'http://135.181.18.66:3636/arbitrum-mainnet-fullnode',
+    rpc: 'https://rpc.arkeomarketplace.com/everstake/arbitrum-mainnet-fullnode',
     arkeo: true,
     color: '#28A0F0',
     chainId: 42161,
