@@ -14,7 +14,7 @@ const CHAINS: Record<string, { name: string; rpc: string; arkeo: boolean; color:
   },
   base: {
     name: 'Base',
-    rpc: 'https://arkeo-provider.liquify.com/base-mainnet-fullnode',
+    rpc: 'https://rpc.arkeomarketplace.com/liquify/base-mainnet-fullnode',
     arkeo: true,
     color: '#0052FF',
     chainId: 8453,
@@ -22,7 +22,7 @@ const CHAINS: Record<string, { name: string; rpc: string; arkeo: boolean; color:
   },
   polygon: {
     name: 'Polygon',
-    rpc: 'https://arkeo-provider.liquify.com/polygon-mainnet-fullnode',
+    rpc: 'https://rpc.arkeomarketplace.com/liquify/polygon-mainnet-fullnode',
     arkeo: true,
     color: '#8247E5',
     chainId: 137,
@@ -30,7 +30,7 @@ const CHAINS: Record<string, { name: string; rpc: string; arkeo: boolean; color:
   },
   bsc: {
     name: 'BNB Chain',
-    rpc: 'https://arkeo-provider.liquify.com/bsc-mainnet-fullnode',
+    rpc: 'https://rpc.arkeomarketplace.com/liquify/bsc-mainnet-fullnode',
     arkeo: true,
     color: '#F0B90B',
     chainId: 56,
@@ -186,10 +186,21 @@ function App() {
   }, [chain.rpc, tokens])
 
   useEffect(() => {
+    let cancelled = false
     setLoading(true)
     setPools([])
     setQuote(null)
-    fetchPools()
+    setError(null)
+    
+    // Small delay to avoid rapid-fire requests when switching chains quickly
+    const timer = setTimeout(() => {
+      if (!cancelled) fetchPools()
+    }, 300)
+    
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+    }
   }, [selectedChain, fetchPools])
 
   const getQuote = async () => {
