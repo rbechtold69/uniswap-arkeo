@@ -6,36 +6,19 @@ import './App.css'
 const CHAINS: Record<string, { name: string; rpc: string; arkeo: boolean; color: string; chainId: number; providers?: string[] }> = {
   ethereum: {
     name: 'Ethereum',
-    rpc: 'https://rpc.arkeomarketplace.com/oxfury/eth-mainnet-fullnode',
+    rpc: 'https://rpc.arkeomarketplace.com/stakevillage/eth-mainnet-fullnode',
     arkeo: true,
     color: '#627EEA',
     chainId: 1,
-    providers: ['0xFury', 'InnovationTheory'],
-  },
-  base: {
-    name: 'Base',
-    rpc: 'https://rpc.arkeomarketplace.com/liquify/base-mainnet-fullnode',
-    arkeo: true,
-    color: '#0052FF',
-    chainId: 8453,
-    providers: ['Liquify', '0xFury', 'InnovationTheory'],
+    providers: ['StakeVillage', '0xFury'],
   },
   polygon: {
     name: 'Polygon',
-    rpc: 'https://rpc.arkeomarketplace.com/liquify/polygon-mainnet-fullnode',
+    rpc: 'https://rpc.arkeomarketplace.com/stakevillage/polygon-mainnet-fullnode',
     arkeo: true,
     color: '#8247E5',
     chainId: 137,
-    providers: ['Liquify'],
-  },
-  // BSC removed — Uniswap V3 Factory not deployed on BNB Chain
-  arbitrum: {
-    name: 'Arbitrum',
-    rpc: 'https://rpc.arkeomarketplace.com/everstake/arbitrum-mainnet-fullnode',
-    arkeo: true,
-    color: '#28A0F0',
-    chainId: 42161,
-    providers: ['Everstake'],
+    providers: ['StakeVillage'],
   },
 }
 
@@ -44,12 +27,7 @@ const UNISWAP_V3_FACTORY = '0x1F98431c8aD98523631AE4a59f267346ea31F984'
 
 // Popular tokens per chain
 const TOKENS: Record<string, { symbol: string; address: string; decimals: number }[]> = {
-  base: [
-    { symbol: 'WETH', address: '0x4200000000000000000000000000000000000006', decimals: 18 },
-    { symbol: 'USDC', address: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', decimals: 6 },
-    { symbol: 'USDbC', address: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA', decimals: 6 },
-    { symbol: 'DAI', address: '0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb', decimals: 18 },
-  ],
+  // Base tokens removed
   ethereum: [
     { symbol: 'WETH', address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', decimals: 18 },
     { symbol: 'USDC', address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', decimals: 6 },
@@ -94,7 +72,7 @@ interface PoolData {
 }
 
 function App() {
-  const [selectedChain, setSelectedChain] = useState('base')
+  const [selectedChain, setSelectedChain] = useState('ethereum')
   const [pools, setPools] = useState<PoolData[]>([])
   const [loading, setLoading] = useState(true)
   const [latency, setLatency] = useState<number | null>(null)
