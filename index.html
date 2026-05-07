@@ -2,13 +2,42 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="robots" content="noindex,nofollow" />
     <link rel="icon" type="image/svg+xml" href="/uniswap-arkeo/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>uniswap-arkeo-lite</title>
     <script type="module" crossorigin src="/uniswap-arkeo/assets/index-y14zkbsP.js"></script>
     <link rel="stylesheet" crossorigin href="/uniswap-arkeo/assets/index-DXvVF1WY.css">
+
+  <style>
+    #arkeo-demo-banner {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 99999;
+      background-color: #b45309;
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: Inter, sans-serif;
+      line-height: 1.4;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    #arkeo-demo-banner a { color: #fde68a; text-decoration: underline; }
+  </style>
   </head>
   <body>
     <div id="root"></div>
+
+  <script>
+    (function() {
+      var b = document.createElement('div');
+      b.id = 'arkeo-demo-banner';
+      b.innerHTML = '\u26a0\ufe0f ARKEO DEMO &mdash; This is <strong>NOT Uniswap</strong>. This site demonstrates decentralized frontend hosting via <a href="https://arkeomarketplace.com" target="_blank" rel="noopener">Arkeo Network</a>. For the real Uniswap app, visit <a href="https://app.uniswap.org" target="_blank" rel="noopener">app.uniswap.org</a>.';
+      document.body.insertBefore(b, document.body.firstChild);
+      document.body.style.paddingTop = '44px';
+    })();
+  </script>
   </body>
 </html>
